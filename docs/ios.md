@@ -1,52 +1,40 @@
-# iOS Installation & Usage
+# iOS
 
-## Prerequisites
+## Install
 
-- Xcode 14.0+
-- CocoaPods (`sudo gem install cocoapods`)
-- A physical iOS device (battery APIs are limited on Simulator)
+iOS apps must be installed via Xcode or TestFlight. There is no direct APK-style install.
 
-## Build & Install
+### Option 1: TestFlight (Recommended)
 
-### Run on Device
+If the app is uploaded to TestFlight:
+1. Install [TestFlight](https://apps.apple.com/app/testflight/id899247664) from the App Store
+2. Open the TestFlight invite link
+3. Tap **Install**
 
-```bash
-flutter run -d ios
-```
+### Option 2: Build with Xcode
 
-### Build IPA
+1. Install [Xcode](https://apps.apple.com/xcode/) and [CocoaPods](https://cocoapods.org)
+2. Run:
+   ```bash
+   git clone https://github.com/desumidhun2006/battery-notifier.git
+   cd battery-notifier
+   flutter pub get
+   flutter build ios --release --no-codesign
+   ```
+3. Open `ios/Runner.xcworkspace` in Xcode
+4. Connect your iPhone and select it as the target
+5. Click **Run**
 
-```bash
-flutter build ios --release
-```
+## Use
 
-Then archive in Xcode for distribution.
-
-### Install via Flutter
-
-```bash
-flutter install
-```
-
-## Permissions
-
-Already configured in `ios/Runner/Info.plist`:
-
-- `NSBatteryUsageDescription` — access battery level and charging state
-- `UIBackgroundModes` — background processing for monitoring
-
-## Usage
-
-1. Install the app on your iOS device
-2. Open Battery Notifier
-3. Set your target percentage using the slider or text input
-4. (Optional) Pick a custom alarm sound
-5. Tap **Activate Alarm**
-6. Plug in your charger — alarm will fire when battery reaches the target
-7. Unplug charger or tap **Deactivate Alarm** to dismiss
+1. Open Battery Notifier
+2. Set your target percentage
+3. Tap **Activate Alarm**
+4. Plug in charger — alarm fires at target
+5. Unplug to dismiss
 
 ## Notes
 
-- Background monitoring works via `flutter_background_service` on iOS
-- Allow notifications when prompted for alarm alerts
-- Battery level updates may have a slight delay on iOS
+- Requires iOS 13.0+
+- Allow notifications when prompted
+- Battery updates may have slight delay
