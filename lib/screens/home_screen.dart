@@ -124,6 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
     await _alarmService.stop();
     await _notificationService.cancelNotification();
     await _bgService.setAlarmFired(false);
+    widget.settings.isActive = false;
+    await _bgService.stop();
+    setState(() => _alarmActive = false);
   }
 
   Future<void> _toggleAlarm() async {
