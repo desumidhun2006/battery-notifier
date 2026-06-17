@@ -1,31 +1,41 @@
 # iOS
 
-## Install
+## Why Can't I Just Download It?
 
-iOS apps must be installed via Xcode or TestFlight. There is no direct APK-style install.
+Apple requires all iOS apps to be signed with a developer certificate. There is no way to install an iOS app with a single click like Android APKs.
 
-### Option 1: TestFlight (Recommended)
+**Your options:**
 
-If the app is uploaded to TestFlight:
-1. Install [TestFlight](https://apps.apple.com/app/testflight/id899247664) from the App Store
-2. Open the TestFlight invite link
-3. Tap **Install**
+### Option 1: Ask the Developer
 
-### Option 2: Build with Xcode
+If you know the person who built this app, ask them to:
+1. Upload it to [TestFlight](https://developer.apple.com/testflight/) (free beta testing)
+2. Send you the TestFlight invite link
+3. You just tap the link and install — no coding needed
 
-1. Install [Xcode](https://apps.apple.com/xcode/) and [CocoaPods](https://cocoapods.org)
-2. Run:
-   ```bash
-   git clone https://github.com/desumidhun2006/battery-notifier.git
-   cd battery-notifier
-   flutter pub get
-   flutter build ios --release --no-codesign
-   ```
-3. Open `ios/Runner.xcworkspace` in Xcode
-4. Connect your iPhone and select it as the target
-5. Click **Run**
+### Option 2: Build It Yourself (Requires a Mac)
 
-## Use
+If you have a Mac with Xcode installed:
+
+```bash
+# Install prerequisites
+brew install cocoapods
+
+# Clone and build
+git clone https://github.com/desumidhun2006/battery-notifier.git
+cd battery-notifier
+flutter pub get
+flutter build ios --release --no-codesign
+
+# Open in Xcode and run on your iPhone
+open ios/Runner.xcworkspace
+```
+
+### Option 3: Use the macOS Version
+
+If you have a MacBook, download the macOS version from [Releases](https://github.com/desumidhun2006/battery-notifier/releases) — it works the same way.
+
+## How to Use
 
 1. Open Battery Notifier
 2. Set your target percentage
