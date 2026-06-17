@@ -6,20 +6,14 @@
 2. Download `battery-notifier-macos.zip`
 3. Unzip the file
 4. Drag `battery_notifier.app` to your Applications folder
+5. Double-click the app to open it
+6. When you see "battery_notifier Not Opened" — click **Done**
+7. Open **System Settings** → **Privacy & Security**
+8. Scroll down and click **Open Anyway** next to the battery_notifier message
+9. Enter your password if prompted
+10. The app will open
 
-### If macOS Says "App is Damaged" or "Cannot Be Opened"
-
-This is because the app isn't signed with an Apple Developer certificate. To fix:
-
-**Option 1: Right-click method**
-- Right-click (or Control-click) the app → Click **Open** → Click **Open** again
-
-**Option 2: Terminal method**
-Open Terminal and run:
-```bash
-xattr -cr /Applications/battery_notifier.app
-```
-Then open the app normally.
+> This only needs to be done once. After that, the app opens normally.
 
 ## Use
 
@@ -34,4 +28,3 @@ Then open the app normally.
 - Requires macOS 10.15+
 - App must be running for alarm to work
 - Allow notifications when prompted
-- The app is not signed — this is normal for open-source projects

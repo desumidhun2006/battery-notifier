@@ -8,7 +8,7 @@ A cross-platform battery alarm app. Set a target charge percentage and get alert
 
 | Platform | Status | How to Install |
 |----------|--------|----------------|
-| macOS | ✅ Available | Download zip → Unzip → Drag to Applications |
+| macOS | ✅ Available | Download zip → Unzip → Drag to Applications → System Settings → Privacy & Security → Open Anyway |
 | Android | 🔜 Coming soon | Requires Android SDK to build |
 | iOS | 🔜 Coming soon | Requires Xcode + Apple Developer account |
 | Windows | 🔜 Coming soon | Requires Visual Studio to build |
