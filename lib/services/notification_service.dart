@@ -1,11 +1,13 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {
   final FlutterLocalNotificationsPlugin _plugin = FlutterLocalNotificationsPlugin();
   bool _initialized = false;
+  final bool _isWeb = kIsWeb;
 
   Future<void> init() async {
-    if (_initialized) return;
+    if (_initialized || _isWeb) return;
 
     const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
     const iosSettings = DarwinInitializationSettings(
@@ -39,6 +41,8 @@ class NotificationService {
   }
 
   Future<void> showAlarmNotification() async {
+    if (_isWeb) return;
+
     const androidDetails = AndroidNotificationDetails(
       'battery_alarm',
       'Battery Alarm',
@@ -68,6 +72,7 @@ class NotificationService {
   }
 
   Future<void> cancelNotification() async {
+    if (_isWeb) return;
     await _plugin.cancel(id: 0);
   }
 }
