@@ -4,10 +4,13 @@ A cross-platform battery alarm app. Set a target charge percentage and get alert
 
 ## Download
 
-**[Download Latest Release](https://github.com/desumidhun2006/battery-notifier/releases/latest)**
+**[Web App (No Install Needed)](https://desumidhun2006.github.io/battery-notifier/)** — Works in browser, requires Chrome/Firefox on a laptop with battery
+
+**[Download Native Apps](https://github.com/desumidhun2006/battery-notifier/releases/latest)**
 
 | Platform | Status | How to Install |
 |----------|--------|----------------|
+| Web | ✅ Available | Open link in Chrome/Firefox — no install needed |
 | macOS | ✅ Available | Download zip → Unzip → Drag to Applications → System Settings → Privacy & Security → Open Anyway |
 | Android | 🔜 Coming soon | Requires Android SDK to build |
 | iOS | 🔜 Coming soon | Requires Xcode + Apple Developer account |
