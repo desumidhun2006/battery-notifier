@@ -50,34 +50,39 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _init() async {
-    await _notificationService.init();
-    await _bgService.init();
+    try { await _notificationService.init(); } catch (_) {}
+    try { await _bgService.init(); } catch (_) {}
 
-    _currentLevel = await _batteryService.getCurrentLevel();
-    _batteryState = await _batteryService.getCurrentState();
+    try {
+      _currentLevel = await _batteryService.getCurrentLevel();
+      _batteryState = await _batteryService.getCurrentState();
+    } catch (_) {}
     setState(() {});
 
     _batteryPollTimer = Timer.periodic(const Duration(seconds: 3), (_) async {
-      final level = await _batteryService.getCurrentLevel();
-      final state = await _batteryService.getCurrentState();
-      if (mounted) {
-        setState(() {
-          _currentLevel = level;
-          _batteryState = state;
-        });
-        if (_alarmActive && !_alarmTriggered &&
-            (state == BatteryState.charging || state == BatteryState.full) &&
-            level >= _targetPercent.toInt()) {
-          _triggerAlarm();
+      try {
+        final level = await _batteryService.getCurrentLevel();
+        final state = await _batteryService.getCurrentState();
+        if (mounted) {
+          setState(() {
+            _currentLevel = level;
+            _batteryState = state;
+          });
+          if (_alarmActive && !_alarmTriggered &&
+              (state == BatteryState.charging || state == BatteryState.full) &&
+              level >= _targetPercent.toInt()) {
+            _triggerAlarm();
+          }
         }
-      }
+      } catch (_) {}
     });
 
     _levelSub = _batteryService.batteryLevel.listen((level) {
-      setState(() => _currentLevel = level);
-    });
+      if (mounted) setState(() => _currentLevel = level);
+    }, onError: (_) {});
 
     _stateSub = _batteryService.batteryState.listen((state) {
+      if (!mounted) return;
       setState(() => _batteryState = state);
       if ((state == BatteryState.charging || state == BatteryState.full) && _alarmActive) {
         if (_currentLevel >= _targetPercent.toInt()) {
